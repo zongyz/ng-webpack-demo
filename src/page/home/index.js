@@ -1,8 +1,6 @@
 require('./index.less');
 
-var app = require('./app');
-
-module.exports = app.name;
+var app = module.exports = require('./app');
 
 app.config(state);
 
