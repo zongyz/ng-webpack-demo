@@ -1,11 +1,14 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var path = require('path');
+var srcPath = path.resolve(__dirname, 'src/');
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    main : './src/main.js'
+  },
   output: {
     path: './build',
-    publicPath: '/build/',
-    filename: 'bundle.js'
+    publicPath: '/',
+    filename: '[name].js'
   },
   module: {
     loaders: [
@@ -34,8 +37,17 @@ module.exports = {
       }
     ]
   },
+  resolve : {
+    root : srcPath,
+    alias : {
+      "ui.router" : "angular-ui-router",
+      "common" : 'common',
+      "page" : 'page',
+      "comp" : 'component'
+    }
+  },
   devServer: {
-    contentBase: "./",
+    contentBase: srcPath,
     inline: true,
     noInfo: false
   },

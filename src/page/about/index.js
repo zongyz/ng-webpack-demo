@@ -1,5 +1,5 @@
 var app = module.exports = angular.module('aboutModule', [
-  require('angular-ui-router')
+  require('ui.router')
 ]);
 
 app.config(state);

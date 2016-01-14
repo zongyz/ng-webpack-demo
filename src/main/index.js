@@ -1,4 +1,4 @@
-require('../common/common.scss');
+require('common/common.scss');
 require('./index.less');
 
 var app = module.exports = require('./app'),
