@@ -1,0 +1,15 @@
+<div class="page-main">
+  <div class="nav">
+    <a ng-repeat-start="item in main.nav" 
+      ui-sref="{{item.state}}"  
+      ng-bind="item.title"
+    ></a>
+    <span ng-repeat-end 
+      class="text-space" 
+      ng-if=" $index < (main.nav.length-1) "
+    >|</span>
+  </div>
+  <div class="main">
+    <div ui-view></div>
+  </div>
+</div>
