@@ -1,39 +1,45 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require('path');
-var srcPath = path.resolve(__dirname, 'src/');
-module.exports = {
+var webpack = require('webpack'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    srcPath = require('path').resolve(__dirname, 'src/');
+
+var config = {
   entry: {
+    vendor : ['angular','angular-ui-router'],
     main : './src/main.js'
   },
   output: {
     path: './build',
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
   module: {
     loaders: [
-      // {
-      //   test : /\.js$/,
-      //   loader : 'uglify'
-      // },
       {
-        test : /\.tpl\.html$/,
+        test : /\.js$/,
+        exclude: /node_modules/,
+        loader : 'ng-annotate'
+      },
+      {
+        test : /\.tpl\.html$/i,
+        exclude: /node_modules/,
         loader : 'raw'
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url?limit=8192'
+        test: /\.(jpe?g|png|gif)$/i,
+        exclude: /node_modules/,
+        loader: 'url?limit=8192&name=img/[hash].[ext]'
       },
       {
-        test: /\.less$/,
-        //   exclude: /node_modules/,
+        test: /\.less$/i,
+        exclude: /node_modules/,
         // loader: "style!css?sourceMap!less?sourceMap"
         // loader: 'style/url!file?name=[name].css!less?sourceMap'
         loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
       },
       {
-        test: /\.(sass|scss)$/,
-        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+        test: /\.(sass|scss)$/i,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')
       }
     ]
   },
@@ -46,17 +52,11 @@ module.exports = {
       "comp" : 'component'
     }
   },
-  devServer: {
-    contentBase: srcPath,
-    inline: true,
-    noInfo: false
-  },
-  devtool: "#source-map",
+  
   plugins: [
-    new ExtractTextPlugin("styles.css")
-  ],
-  babel: {
-    presets: ['es2015'],
-    plugins: ['transform-runtime']
-  }
+    new ExtractTextPlugin("css/[name].css"),
+    
+  ]
 }
+
+module.exports = config;

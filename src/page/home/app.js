@@ -1,3 +1,3 @@
 module.exports = angular.module('homeModule', [
-  require('ui.router')
+  'ui.router'
 ]);

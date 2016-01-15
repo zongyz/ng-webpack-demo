@@ -20,10 +20,10 @@ app.directive('main', function(){
   }
 });
 
-routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function routerConfig($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.otherwise('/home');
-  }
+
+function routerConfig($stateProvider, $urlRouterProvider){
+  $urlRouterProvider.otherwise('/home');
+}
 
 function ctrl(){
   this.nav = cons.nav;
