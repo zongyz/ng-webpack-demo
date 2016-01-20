@@ -15,11 +15,6 @@ var config = {
   module: {
     loaders: [
       {
-        test : /\.js$/,
-        exclude: /node_modules/,
-        loader : 'ng-annotate'
-      },
-      {
         test : /\.tpl\.html$/i,
         exclude: /node_modules/,
         loader : 'raw'

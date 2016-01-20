@@ -15,6 +15,6 @@ function state($stateProvider, $urlRouterProvider){
 }
 
 // ctrl.$inject = ['$scope'];
-function ctrl($scope){
-
+function ctrl(){
+  // console.log($http);
 }

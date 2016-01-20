@@ -20,11 +20,11 @@ app.directive('main', function(){
   }
 });
 
-
 function routerConfig($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/home');
 }
 
-function ctrl(){
+function ctrl($scope){
+  console.log($scope);
   this.nav = cons.nav;
 }
